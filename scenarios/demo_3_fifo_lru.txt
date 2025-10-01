@@ -1,0 +1,8 @@
+# SCENARIO 3: FIFO Scheduling with efficient LRU Page Replacement
+scheduler: FIFO
+page_replacement: LRU
+
+# process: pid name arrival burst priority [memory_accesses...]
+# P1 will re-access page 1 (4100), LRU should prevent a page fault.
+process: 1 P1 0 8 10 4100 8200 12300 16400 4100
+process: 2 P2 1 6 5  20500 24600 8200

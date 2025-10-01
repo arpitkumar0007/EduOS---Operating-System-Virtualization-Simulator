@@ -1,0 +1,7 @@
+# SCENARIO 2: Shortest Job First Scheduling with FIFO Page Replacement
+scheduler: SJF
+page_replacement: FIFO
+
+# process: pid name arrival burst priority [memory_accesses...]
+process: 1 P-Long  0 8 10 4100 8200
+process: 2 P-Short 1 4 5  12300 16400 4100

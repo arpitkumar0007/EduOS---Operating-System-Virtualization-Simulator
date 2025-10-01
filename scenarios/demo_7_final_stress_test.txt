@@ -1,0 +1,22 @@
+# SCENARIO 7: The Final Stress Test. 5 long processes, heavy memory contention.
+# This will cause constant page faults and test the LRU and SJF policies under high load.
+# These processes collectively need 10 unique pages (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) for only 4 frames.
+
+scheduler: SJF
+page_replacement: LRU
+
+# process: pid name arrival burst priority [memory_accesses...]
+# Process P1: Focuses on low-numbered pages
+process: 1 P1 0 15 10 4100 8200 12300 4100 8200 16400 4100 8200 12300 4100 8200 16400 4100 8200
+
+# Process P2: Shorter, introduces new pages and conflicts with P1
+process: 2 P2 2 12 5 20500 24600 8200 20500 12300 24600 8200 20500 12300 24600 8200 20500
+
+# Process P3: Longest, touches a wide range of pages, causing maximum disruption
+process: 3 P3 4 18 15 28700 32800 4100 28700 8200 32800 12300 28700 16400 32800 20500 28700 24600 32800 4100 28700
+
+# Process P4: Another short process to compete with P2
+process: 4 P4 6 13 8 36900 8200 12300 36900 20500 24600 36900 8200 12300 36900 20500 24600 36900
+
+# Process P5: Arrives late, focuses on high-numbered pages, forcing out early pages
+process: 5 P5 8 16 12 41000 36900 32800 41000 28700 36900 41000 24600 32800 41000 20500 36900 41000 16400 32800 41000

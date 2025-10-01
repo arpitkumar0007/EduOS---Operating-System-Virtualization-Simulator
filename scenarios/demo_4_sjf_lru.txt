@@ -1,0 +1,7 @@
+# SCENARIO 4: An optimized combination of SJF Scheduling and LRU Page Replacement
+scheduler: SJF
+page_replacement: LRU
+
+# process: pid name arrival burst priority [memory_accesses...]
+process: 1 P-Longer  0 9 15 4100 8200 12300
+process: 2 P-Shorter 1 5 5  16400 20500 4100 24600

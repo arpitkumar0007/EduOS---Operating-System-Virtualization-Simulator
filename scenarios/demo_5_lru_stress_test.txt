@@ -1,0 +1,8 @@
+# SCENARIO 5: A stress test designed to cause many page faults and demonstrate LRU
+scheduler: FIFO
+page_replacement: LRU
+
+# These two processes need 6 unique pages (1,2,3,4,5,6) but only 4 frames are available.
+# process: pid name arrival burst priority [memory_accesses...]
+process: 1 P-A 0 12 10 4100 8200 12300 4100 16400 20500 4100 8200
+process: 2 P-B 1 10 10 24600 12300 16400 24600 4100 8200 24600

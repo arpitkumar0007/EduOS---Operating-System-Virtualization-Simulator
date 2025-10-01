@@ -1,0 +1,7 @@
+# SCENARIO 1: Basic FIFO Scheduling and FIFO Page Replacement
+scheduler: FIFO
+page_replacement: FIFO
+
+# process: pid name arrival burst priority [memory_accesses...]
+process: 1 P1 0 6 10 4100 8200 12300
+process: 2 P2 2 5 5  16400 20500 4100

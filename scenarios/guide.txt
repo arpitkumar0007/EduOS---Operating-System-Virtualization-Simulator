@@ -1,0 +1,52 @@
+=================================
+ Welcome to the EduOS Guide!
+=================================
+
+This guide explains the purpose of each scenario file and how to run it.
+The simulator is configured with 4 physical memory frames, so scenarios with
+memory accesses that exceed this will cause page faults.
+
+To run any scenario, use the following command from the project's root directory:
+./build/EduOS scenarios/<scenario_file_name>.txt
+
+---
+
+1. demo_1_fifo_fifo.txt
+   - Purpose: To demonstrate the most basic scheduling and page replacement policies.
+   - What to watch for: Processes are executed strictly in the order they arrive. Memory pages are replaced in the order they were loaded, which can be inefficient.
+
+---
+
+2. demo_2_sjf_fifo.txt
+   - Purpose: To show how Shortest Job First (SJF) scheduling prioritizes shorter tasks, even if they arrive later.
+   - What to watch for: Notice that P2 (burst time 4) will be scheduled before P1 (burst time 8), even though P1 arrives first. Memory replacement is still basic FIFO.
+
+---
+
+3. demo_3_fifo_lru.txt
+   - Purpose: To highlight the difference between FIFO and LRU page replacement.
+   - What to watch for: Processes access pages in a pattern that is inefficient for FIFO but efficient for LRU. P1 accesses page 1 (VAddr 4100) and then re-accesses it later. LRU will keep this page in memory, avoiding a page fault, whereas FIFO might have already replaced it.
+
+---
+
+4. demo_4_sjf_lru.txt
+   - Purpose: To combine the efficiencies of both SJF scheduling and LRU page replacement.
+   - What to watch for: This shows a more optimized OS configuration. Shorter jobs run first, and the memory management is intelligent, leading to fewer page faults and faster overall completion.
+
+---
+
+5. demo_5_lru_stress_test.txt
+   - Purpose: To intentionally cause a high number of page faults to clearly demonstrate the LRU mechanism.
+   - What to watch for: Both processes together need more memory pages than the 4 available frames. They will constantly force the OS to swap pages in and out. Observe how the LRU policy always chooses the least recently used page as the victim, regardless of which process it belongs to.
+
+---
+
+6. demo_6_sjf_contention.txt
+   - Purpose: To demonstrate SJF's non-preemptive nature when processes are competing for memory.
+   - What to watch for: P-Long starts first. The much shorter P-Short arrives later but has to wait for P-Long to finish its current task. Both processes will compete for the limited memory frames, leading to page faults for both.
+
+---
+
+7. demo_7_final_stress_test.txt
+   - Purpose: This is the ultimate stress test. Five long processes with overlapping memory needs will create maximum contention for both the CPU and memory.
+   - What to watch for: A chaotic but realistic simulation! Observe the constant page faults as the LRU policy works overtime to swap pages. Notice how the SJF scheduler tries to bring order by picking the shortest remaining jobs, but the system remains under high load. This simulates a heavily-loaded server environment.

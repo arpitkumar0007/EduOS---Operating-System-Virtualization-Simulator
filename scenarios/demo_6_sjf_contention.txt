@@ -1,0 +1,8 @@
+# SCENARIO 6: Demonstrates non-preemptive SJF with memory contention
+scheduler: SJF
+page_replacement: LRU
+
+# P-Long starts first. P-Short arrives but must wait. Both will fight for memory frames.
+# process: pid name arrival burst priority [memory_accesses...]
+process: 1 P-Long  0 10 10 4100 8200 12300 16400 20500
+process: 2 P-Short 2 4  5  8200 24600 28700 4100
