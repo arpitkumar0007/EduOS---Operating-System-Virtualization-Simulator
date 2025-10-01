@@ -41,7 +41,7 @@ The system simulates a simple computer with 16KB of physical RAM divided into 4K
 1. Clone the repository:
 ```bash
 git clone https://github.com/arpitkumar0007/EduOS---Operating-System-Virtualization-Simulator.git
-cd EduOS
+cd EduOS---Operating-System-Virtualization-Simulator
 ```
 
 2. Create a build directory:
